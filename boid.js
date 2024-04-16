@@ -38,14 +38,17 @@ class person{
         stroke(0, 255, 0);
       }
       else{
+        console.log("blue");
         stroke(0, 0, 255);
       }
     }
     else if(this.viruses.length==1){
       if(this.viruses[0]==1){
+        console.log("red");
         stroke(255, 0, 0);
       }
       else{
+        console.log("yellow");
         stroke(255, 255, 0);
       }
     }
@@ -56,7 +59,7 @@ class person{
       this.immune.push(this.viruses[i]);
     }
     this.viruses.length = 0;
-    console.log(this);
+    //console.log(this);
   }
 //   recover() {
 //     // Copy viruses to immune
@@ -142,7 +145,7 @@ class bb {
 
   show() {
     strokeWeight(stroke_width_size);
-    stroke(255);
+    stroke(255, 255, 0);
     point(this.position.x, this.position.y);
   }
 }
@@ -170,7 +173,7 @@ class sus {
 
   show() {
     strokeWeight(stroke_width_size);
-    stroke(0, 0, 255);
+    stroke(0, 255, 255);
     point(this.position.x, this.position.y);
   }
 }
@@ -198,7 +201,35 @@ class co {
 
   show() {
     strokeWeight(stroke_width_size);
-    stroke(255, 255, 0);
+    stroke(255, 255, 255);
+    point(this.position.x, this.position.y);
+  }
+}
+
+class re {
+  constructor() {
+    this.position = createVector(width1_sim / 3, height / 2);
+    this.velocity = p5.Vector.random2D();
+    this.velocity.setMag(random(0.5, 1));
+    this.acceleration = createVector();
+  }
+
+  update() {
+    this.position.add(this.velocity);
+    this.velocity.add(this.acceleration);
+    if (this.position.x < 0 || this.position.x > width1_sim) {
+      this.velocity.x = -1 * this.velocity.x;
+      this.acceleration.x = -1 * this.acceleration.x;
+    }
+    if (this.position.y < 0 || this.position.y > height) {
+      this.velocity.y = -1 * this.velocity.y;
+      this.acceleration.y = -1 * this.acceleration.y;
+    }
+  }
+
+  show() {
+    strokeWeight(stroke_width_size);
+    stroke(0, 255, 0);
     point(this.position.x, this.position.y);
   }
 }
